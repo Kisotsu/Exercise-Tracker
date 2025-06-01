@@ -56,7 +56,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   exercises.push({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date.trim(),
+    date: date.trim().replace(",", ""),
     duration: Number(req.body.duration),
     description: req.body.description
   })
@@ -64,7 +64,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   res.json({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date.trim(),
+    date: date.trim().replace(",", ""),
     duration: Number(req.body.duration),
     description: req.body.description
   })
