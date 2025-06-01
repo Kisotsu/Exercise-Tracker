@@ -15,8 +15,7 @@ app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
 
-let usersList = [{ _id: 'l32vR4DB3mMJ3mMmAgBnUgoq',
-  username: '123dawdaw',}]
+let usersList = []
 app.post('/api/users', (req, res) => {
   function makeid(length) {
     var result           = '';
@@ -36,19 +35,7 @@ app.get('/api/users', (req, res) => {
   res.json(usersList)
 })
 
-let exercises=[  {
-  _id: 'l32vR4DB3mMJ3mMmAgBnUgoq',
-  username: '123dawdaw',
-  date: 'Sat, 31 May 2025 ',
-  duration: '32',
-  description: '1'
-}, {
-  _id: 'l32vR4DB3mMJ3mMmAgBnUgoq',
-  username: '123dawdaw',
-  date: 'Sat, 31 May 2025 ',
-  duration: '123',
-  description: '123'
-}]
+let exercises=[  ]
 
 app.post("/api/users/:_id/exercises", (req, res) => {
 
@@ -69,16 +56,16 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   exercises.push({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date,
-    duration: req.body.duration,
+    date: date.trim(),
+    duration: Number(req.body.duration),
     description: req.body.description
   })
   console.log(exercises, date)
   res.json({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date,
-    duration: req.body.duration,
+    date: date.trim(),
+    duration: Number(req.body.duration),
     description: req.body.description
   })
 })
