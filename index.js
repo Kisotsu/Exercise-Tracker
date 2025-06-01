@@ -75,7 +75,7 @@ app.get("/api/users/:_id/logs", (req, res) => {
   const getIndex = exercises.findIndex(function(index) {
     return index._id == req.params._id
   })
-  let listOfLogs={_id: usersList[getIndex]._id, username: usersList[getIndex].username, count: "", log: ""}
+  let listOfLogs={ username: usersList[getIndex].username, count: "",_id: usersList[getIndex]._id, log: ""}
   let uuhList = []
   
   exercises.forEach(function(element, i) {
