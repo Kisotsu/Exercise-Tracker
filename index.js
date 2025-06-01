@@ -47,7 +47,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   console.log("date", req.body.date)
   if(req.body.date == undefined || req.body.date == null || req.body.date == "") {
     console.log("puste")
-    date = new Date().toUTCString().substring(0, 17).trim()
+    date = new Date().toUTCString()
   } else {
     console.log("nie puste")
     date = req.body.date
@@ -56,7 +56,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   exercises.push({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date.trim().replace(",", ""),
+    date: new Date(date).toDateString(),
     duration: Number(req.body.duration),
     description: req.body.description
   })
@@ -64,7 +64,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
   res.json({
     _id: usersList[getIndex]._id,
     username: usersList[getIndex].username,
-    date: date.trim().replace(",", ""),
+    date: new Date(date).toDateString(),
     duration: Number(req.body.duration),
     description: req.body.description
   })
